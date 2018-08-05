@@ -1,5 +1,7 @@
 package _01_Custom_ArrayList;
 
+import javax.swing.JOptionPane;
+
 @SuppressWarnings("unchecked")
 
 public class ArrayList<T> {
@@ -51,17 +53,25 @@ public class ArrayList<T> {
 	}
 
 	public void remove(int loc) throws IndexOutOfBoundsException {
-		T[] newList = (T[]) new Object[arr.length - 1];
-		boolean goneThrough = false;
-		for (int i = 0; i < newList.length; i++) {
-			if (i != loc && !goneThrough) {
-
+		T[] newArr = (T[]) new Object[arr.length-1];
+		for (int i = 0; i < newArr.length; i++) {
+			if(i < loc) {
+				newArr[i] = arr[i];
+			} else if(i >= loc) {
+				newArr[i] = arr[i+1];
 			}
+			
 		}
+		arr = newArr;
 	}
 
 	public boolean contains(T val) {
-
+		for (int i = 0; i < arr.length; i++) {
+			if(arr[i].equals(val)) {
+				return true;
+			}
+		}
+		
 		return false;
 	}
 }
